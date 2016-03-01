@@ -17,29 +17,9 @@ else
 	echo "oke"
 fi
 
- if [[ ${#password} -ge 8 ]]
+ if [[ ${#password} -ge 8 && "$password" =~ [[:upper:]] && "$password" =~ [[:lower:]] && "$password" == *['!'@#\$%^\&*()_+]* && "$password" == *[1234567890]* ]]
  then
-	if [[ "$password" =~ [[:upper:]] ]]
-	then
-		if [[ "$password" =~ [[:lower:]] ]]
-		then
-			if [[ "$password" == *['!'@#\$%^\&*()_+]* ]]
-			then
-				if [[ "$password" == *[1234567890]* ]]
-				then
-					echo "good password"
-				else
-					echo "weak password"
-				fi
-			else
-				echo "weak password"
-			fi
-		else
-			echo "weak password"
-		fi
-	else
-		echo "weak password"
-	fi
+	echo "good password"
  else
 	echo "weak password"
  fi

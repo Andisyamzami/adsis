@@ -17,16 +17,5 @@ else
 fi
 }
 
-haritanggal()
-{
- echo $(date) | awk '{print $1" "$2" "$3}'
-}
-
-durasi()
-{
- echo $(uptime) | awk '{print $2" "$3" "$4}' | awk -F',' '{print $1}'
-}
 periksakoneksi
 periksakoneksi1
-haritanggal
-durasi
