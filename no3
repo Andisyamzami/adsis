@@ -3,23 +3,30 @@
 # Check password for strength 
 # Written by Vivek Gite under GPL v2.x+
 # ----------------------------------------------
+read -p "Enter your fullname : " name
 read -p "Enter username : " user
 read -p  "Enter password : " password
 echo
 echo "Tesing password strength..."
-echo
-echo $user
-echo $password
+flag=1
+for element in ${name//' '/ } ; do
+  if test "${password#*$element}" != "$password"
+  then
+	#echo "weak password(terdapat subtring nama)"
+	flag=0
+  fi
+done
+
+echo $flag
 if test "${password#*$user}" != "$password"
 then
-	echo "weak password"    # $substring is in $string
-else
-	echo "oke"
+	echo "weak password(terdapat substring username)"    # $substring is in $string
+	flag=0
 fi
-
- if [[ ${#password} -ge 8 && "$password" =~ [[:upper:]] && "$password" =~ [[:lower:]] && "$password" == *['!'@#\$%^\&*()_+]* && "$password" == *[1234567890]* ]]
+echo $flag
+ if [[ ${#password} -ge 8 && "$password" =~ [[:upper:]] && "$password" =~ [[:lower:]] && "$password" == *['!'@#\$%^\&*()_+]* && "$password" == *[1234567890]* && $flag == 1 ]]
  then
 	echo "good password"
  else
-	echo "weak password"
+	echo "weak password(tidak sesuai spesifikasi)"
  fi

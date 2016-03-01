@@ -1,0 +1,11 @@
+myarr=($("andis muhammad syamzami" | awk  -F ' ' '{ print $1 }'))
+
+# Now access elements of an array (change "1" to whatever you want)
+echo ${myarr[1]}
+
+# Or loop through every element in the array
+for i in "${myarr[@]}"
+do
+   :
+  echo $i
+done
